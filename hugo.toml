@@ -1,0 +1,12 @@
+baseURL = "https://nishita.netlify.app/"
+languageCode = "en-us"
+title = "Nishita"
+copyright = "Nishita"
+
+[params]
+  description = "Illustrations & Art"
+
+disableKinds = ["taxonomy", "term"]
+
+[imaging]
+  quality = 85

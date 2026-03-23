@@ -1,0 +1,11 @@
+{{ define "main" }}
+  <div class="grid">
+    {{ $drawings := (resources.Match "drawings/*") }}
+    {{ range $drawings }}
+      {{ $thumb := .Filter (images.Process "fit 800x800") }}
+      <a href="{{ .RelPermalink }}" target="_blank">
+        <img src="{{ $thumb.RelPermalink }}" alt="{{ .Name }}" loading="lazy" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}">
+      </a>
+    {{ end }}
+  </div>
+{{ end }}
