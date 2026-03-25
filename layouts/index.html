@@ -1,11 +1,20 @@
 {{ define "main" }}
   <div class="grid">
-    {{ $drawings := (resources.Match "drawings/*") }}
-    {{ range $drawings }}
+    {{ $drawings := (resources.Match "drawings/*.{jpg,jpeg,png,gif,webp}") }}
+    {{ $first := resources.Get "drawings/women-i-could-be.jpg" }}
+    {{ with $first }}
       {{ $thumb := .Filter (images.Process "fit 800x800") }}
       <a href="{{ .RelPermalink }}" target="_blank">
         <img src="{{ $thumb.RelPermalink }}" alt="{{ .Name }}" loading="lazy" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}">
       </a>
+    {{ end }}
+    {{ range $drawings }}
+      {{ if ne .Name "/drawings/women-i-could-be.jpg" }}
+        {{ $thumb := .Filter (images.Process "fit 800x800") }}
+        <a href="{{ .RelPermalink }}" target="_blank">
+          <img src="{{ $thumb.RelPermalink }}" alt="{{ .Name }}" loading="lazy" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}">
+        </a>
+      {{ end }}
     {{ end }}
   </div>
 {{ end }}
